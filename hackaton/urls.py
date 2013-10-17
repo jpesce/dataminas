@@ -1,10 +1,14 @@
 from django.conf.urls import patterns, include, url
+from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+from django.conf import settings
+dajaxice_autodiscover()
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     # Examples:
     # url(r'^$', 'hackaton.views.home', name='home'),
     # url(r'^hackaton/', include('hackaton.foo.urls')),
