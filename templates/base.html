@@ -1,9 +1,18 @@
+{% load dajaxice_templatetags %}
+
 <html>
   <head>
     <title>Dataminas</title>
     <link rel="stylesheet" href="/static/bootstrap.min.css">
+    {% dajaxice_js_import %}
   </head>
   <body>
+  <input type="button" onclick="Dajaxice.dataminas.dajaxice_example(my_callback)" value="Get message from server!">
+  <script>
+    function my_callback(data){
+        alert(data.message);
+    }
+  </script>
   {% block content %}
   {% endblock %}
   </body>
