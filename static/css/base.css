@@ -1,0 +1,45 @@
+body,h1,h2,h3,h4,h5,h6 { font-family: "Open Sans", Helvetica, Arial, sans-serif; }
+h1,h2,h3,h4,h5,h6 { font-weight: 600; }
+h1:first-child,h2:first-child,h3:first-child,h4:first-child,h5:first-child,h6:first-child {margin-top: 0px; }
+strong { font-weight: 700; }
+
+.navbar { min-height: 70px; margin-bottom: 0px; }
+.navbar-nav li a { padding: 25px; text-transform: uppercase; font-weight: 600; }
+.navbar-toggle { margin-top: 18px; margin-bottom: 18px; }
+
+.center { text-align: center; }
+
+.navbar .logo { padding-top: 10px; }
+
+.header-wrapper { 
+  background: #444 url(../img/header.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;
+  color: #FFF; margin-bottom: 40px;
+}
+.header-wrapper h2 { font-size: 48px; margin-top: 0px; margin-bottom: 20px; text-transform: uppercase; }
+.header-wrapper p { font-size: 18px; font-weight: 300; line-height: 1.5em;  }
+.header-slogan { margin-top:100px; margin-bottom: 100px; }
+.header-image { margin-top: 90px; }
+@media (max-width: 992px) { .header-image {display:none;} }
+
+.esfera { padding: 0px; }
+.esfera a:hover { text-decoration: none; color: #FFF; }
+.esfera a { display: block; padding-top: 25px; padding-right: 25px; padding-left: 25px; color: #FFF; text-align: center;}
+.esfera p { font-weight: 300; opacity: 0.8; filter:alpha(opacity=80); min-height: 4.5em; font-size: 12px; }
+.arrecadacao { background-color: #27AE60; }
+.arrecadacao:hover { background-color: #2ECC71; }
+.despesa { background-color: #2C3E50; }
+.despesa:hover { background-color: #34495E; }
+.divida { background-color: #E67E22; }
+.divida:hover { background-color: #F39C12; }
+
+.esfera h4 { text-align: center; text-transform: uppercase; font-size: 12px;}
+
+@media (max-width: 992px) { .anomalias { margin-top: 40px; } }
+.anomalias ul.nav-stacked>li+li { margin-top: 0px; }
+.anomalias ul li:first-child a { border-top: 0px solid #DDD; }
+.anomalias ul li a { color: inherit; border-top: 1px solid #DDD; }
+.anomalias ul li a, .anomalias li a:hover { -webkit-border-radius: 0 !important; -moz-border-radius: 0 !important; border-radius: 0 !important;} 
+
+footer { background-color: #DDD; }
+footer .container { margin-top: 80px; padding-top: 40px; padding-bottom: 40px; }
