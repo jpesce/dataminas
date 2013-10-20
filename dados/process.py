@@ -76,15 +76,22 @@ def getChildren(key,df):
     return(sorted(ids))
 
 
-def urlFriendly(string,fmt="latin1"):
+def url_friendly(string,fmt="latin1"):
+    if type(string)!=type(str()):
+        return None
     s = unicode(string,fmt)
     dec = unidecode(s)
-    return (str(dec).lower().replace(" ","-"))
+    return (str(dec).lower().replace(" ","-").replace(".",""))
 
-def printToFile(path,data):
+def user_friendly(string):
+    words = string.split()
+    return (" ".join([s.capitalize() for s in words])) ## TESTAR
+
+
+def print_to_file(path,data):
     f = open(path,'w')
     f.write("{"+",".join(
-        ['"'+ urlFriendly(key) + '":' +
+        ['"'+ key + '":' +
          data.loc[key].to_json(orient='records',double_precision=2)
          for key in data.index.unique()])+
         "}")
@@ -100,15 +107,22 @@ def read_and_convert(in_paths,out_path):
         d = pd.read_csv(in_paths)
     d = d[(d['AAEXERCICIO'] < 2013) |
           (d['CD_MENSAL'] < 11)]
-    printToFile(out_path,d)
+
+    ## Make names url-friendly
+    d["CD_NOME_AMIGAVEL"]=[user_friendly(x) for x in d.index]
+    d["CD_PAI"]=d["CD_PAI"].apply(url_friendly)
+    d.index = [url_friendly(x) for x in d.index]
+    #d.index.apply(url_friendly)
+    print_to_file(out_path,d)
+    return d
     
-read_and_convert(["bruto/despesas_nivel_1.csv","bruto/despesas_nivel_2.csv"],
-                 "despesa.json")
+desp=read_and_convert(["bruto/despesas_nivel_1.csv","bruto/despesas_nivel_2.csv"],
+                      "despesa.json")
 
-read_and_convert(["bruto/arrecadacao_nivel_1.csv","bruto/arrecadacao_nivel_2.csv"],
-                 "arrecadacao.json")
+arrec=read_and_convert(["bruto/arrecadacao_nivel_1.csv","bruto/arrecadacao_nivel_2.csv"],
+                       "arrecadacao.json")
 
-read_and_convert("bruto/divida_nivel_1.csv","divida.json")
+divida=read_and_convert("bruto/divida_nivel_1.csv","divida.json")
 
 # desp_anuais = pd.concat(
 #     [pd.read_csv("bruto/despesas_nivel_1.csv"),
