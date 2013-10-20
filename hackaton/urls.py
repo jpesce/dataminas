@@ -17,4 +17,5 @@ urlpatterns = patterns('',
     url(r'^$', 'dataminas.views.home', name='home'),
     url(r'^dados/(?P<category>[a-z\-]+)/$', 'dataminas.views.show_category', name='show_category'),
     url(r'^dados/(?P<category>[a-z\-]+)/(?P<subcategory>[a-z\-]+)/$', 'dataminas.views.show_subcategory', name='show_subcategory'),
+    url(r'^ponto/(?P<pk>[0-9]+)/$', 'dataminas.views.show_point', name='show_point'),
 )

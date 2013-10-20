@@ -118,7 +118,7 @@ function loadD3(data){
     .attr("cx", getX)
     .attr("cy", getY)
     .on("click", function(d){
-        location.href='example.html';
+        location.href='/ponto/'+d.id;
     })
     .on("mouseover", function(d){
       d3.select(this).attr("opacity", 1);

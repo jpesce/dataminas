@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load date %}
+
+{% block content %}
+<div class="container margin-top-40">
+  <div class="row">
+    <div class="col-lg-7 margin-bottom-40">
+      {% if point.category.parent %}
+      <h2>{{ point.category.parent.name }} de {{ point.category.name }}</h2>
+      {% else %}
+      <h2>{{ point.category.name }}</h2>
+      {% endif %}
+      <br/>
+      <p><strong>Valor:</strong> R${{ point.value }}</p>
+      <p><strong>Data:</strong> {{ point.month|int_to_month }} {{ point.year }}</p>
+      <p><strong>Número de alertas:</strong> {{ point.user_score }}</p>
+      <p><strong>Alerta automático:</strong> {{ point.algorithm_score }}%</p>
+    </div>
+    <div class="col-lg-5">
+      <h4>Comentários</h4>
+      <div class="fb-comments" data-href="{{ request.build_absolute_uri|urlencode }}" data-numposts="4" data-width="400" data-order-by="reverse_time"></div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

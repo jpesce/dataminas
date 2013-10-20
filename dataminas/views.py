@@ -46,3 +46,9 @@ def show_category(request, category):
     # Get subcategories
     subcategories = Category.objects.filter(parent=categories[0])
     return render_to_response('dataminas/show_category.html', { 'categories': categories, 'subcategories': subcategories,  'points': points }, context_instance=RequestContext(request))
+
+def show_point(request, pk):
+    point = get_object_or_404(Point, pk=pk)
+
+    return render_to_response('dataminas/show_point.html', { 'point': point }, context_instance=RequestContext(request))
+

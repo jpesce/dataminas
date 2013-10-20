@@ -25,6 +25,7 @@
       <div id="focus"></div>
     </div>
     <div class="col-lg-3 subcategorias">
+      <h4>Categorias</h4>
       {% for subcategory in subcategories %}
       <a href="{% url 'show_subcategory' categories.0.name_url subcategory.name_url %}"><span class="label label-categorias">{{ subcategory.name }}</span></a>
       {% endfor %}
