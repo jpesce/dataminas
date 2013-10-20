@@ -83,16 +83,18 @@ def url_friendly(string,fmt="latin1"):
     dec = unidecode(s)
     return (str(dec).lower().replace(" ","-").replace(".",""))
 
+
 def user_friendly(string):
     words = string.split()
-    return (" ".join([s.capitalize() for s in words])) ## TESTAR
+    return (" ".join([s.capitalize() if len(s)>1 else s.lower() for s in words])) ## TESTAR
 
 
 def print_to_file(path,data):
     f = open(path,'w')
     f.write("{"+",".join(
-        ['"'+ key + '":' +
-         data.loc[key].to_json(orient='records',double_precision=2)
+        ['"'+ key + '":' + data.loc[key].to_json(orient='records',double_precision=2) 
+         if type(data.loc[key]) == type(pd.DataFrame())
+         else '"'+ key + '":['+ data.loc[key].to_json(double_precision=2) + "]"
          for key in data.index.unique()])+
         "}")
     f.close()
@@ -119,7 +121,8 @@ def read_and_convert(in_paths,out_path):
 desp=read_and_convert(["bruto/despesas_nivel_1.csv","bruto/despesas_nivel_2.csv"],
                       "despesa.json")
 
-arrec=read_and_convert(["bruto/arrecadacao_nivel_1.csv","bruto/arrecadacao_nivel_2.csv"],
+arrec=read_and_convert(["bruto/arrecadacao_nivel_1.csv",
+                        "bruto/arrecadacao_nivel_2.csv"],
                        "arrecadacao.json")
 
 divida=read_and_convert("bruto/divida_nivel_1.csv","divida.json")
