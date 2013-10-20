@@ -1,4 +1,5 @@
 from django.contrib import admin
-from dataminas.models import Anomaly
+from dataminas.models import Point,Category
 
-admin.site.register(Anomaly)
+admin.site.register(Point)
+admin.site.register(Category)
