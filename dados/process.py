@@ -10,6 +10,7 @@ def trimmZeros(keyvector):
     return result
 
 
+
 def read(path,columns={"CD_METADADOS": str, "CD_PAI": str}):
     """
     Le dados, retira zeros das bordas, coloca CD_METADADOS como chave.
@@ -22,6 +23,7 @@ def read(path,columns={"CD_METADADOS": str, "CD_PAI": str}):
     data.index = keynames
     ## data.rename(keynames)
     return(data)
+
 
 
 def parse(data, meta,
@@ -73,20 +75,23 @@ def getChildren(key,df):
             ids.append(n)
     return(sorted(ids))
 
+
+def urlFriendly(string,fmt="latin1"):
+    s = unicode(string,fmt)
+    dec = unidecode(s)
+    return (str(dec).lower().replace(" ","-"))
+
 def printToFile(path,data):
     f = open(path,'w')
     f.write("{"+",".join(
-        ['"'+ key + '":'+ data.loc[key].to_json(orient='records',double_precision=2)
+        ['"'+ urlFriendly(key) + '":' +
+         data.loc[key].to_json(orient='records',double_precision=2)
          for key in data.index.unique()])+
         "}")
     f.close()
     
 
 desp_data = read('bruto/despesa_dados.csv')
-desp_meta = read('bruto/despesa_metadados.csv')
-desp_meta['CD_PAI'] = trimmZeros(desp_meta['CD_PAI'])
-desp=parse(desp_data,desp_meta)
-printToFile("despesa.json",desp)
 
 
 desp_anuais = pd.concat(
@@ -94,26 +99,42 @@ desp_anuais = pd.concat(
      pd.read_csv("bruto/despesas_nivel_2.csv")])
 printToFile("despesa.json",desp_anuais)
 
-arrec_data = read('bruto/arrecadacao_dados.csv')
-arrec_meta  = read('bruto/arrecadacao_metadados.csv')
-arrec_meta['CD_PAI'] = trimmZeros(arrec_meta['CD_PAI'])
-arrec=parse(arrec_data,arrec_meta)
-printToFile("arrecadacao2012.json",arrec)
-
 
 arrec_anuais = pd.concat([
     pd.read_csv("bruto/arrecadacao_nivel_1.csv"),
     pd.read_csv("bruto/arrecadacao_nivel_2.csv")])
 printToFile("arrecadacao.json",arrec_anuais)
 
-divida_data = read('bruto/divida_dados.csv')
-divida_meta = read('bruto/divida_metadados.csv')
-
-divida_meta['CD_PAI'] = trimmZeros(divida_meta['CD_PAI'])
-divida = parse(divida_data,divida_meta)
-printToFile("divida2012.json",divida)
+divida_anuais = pd.read_csv("bruto/divida_nivel_1.csv")
+printToFile("divida.json",divida_anuais)
 
 
+
+###### PARSING DOS DADOS .CSV
+### Essas operacoes processam a base de dados disponibilizada pelo movimentominas.
+### Atualmente nos não estamos utilizando ela devido as suas limitacoes.
+
+# arrec_data = read('bruto/arrecadacao_dados.csv')
+# arrec_meta  = read('bruto/arrecadacao_metadados.csv')
+# arrec_meta['CD_PAI'] = trimmZeros(arrec_meta['CD_PAI'])
+# arrec=parse(arrec_data,arrec_meta)
+# printToFile("arrecadacao2012.json",arrec)
+
+# desp_meta = read('bruto/despesa_metadados.csv')
+# desp_meta['CD_PAI'] = trimmZeros(desp_meta['CD_PAI'])
+# desp=parse(desp_data,desp_meta)
+# printToFile("despesa.json",desp)
+
+# divida_data = read('bruto/divida_dados.csv')
+# divida_meta = read('bruto/divida_metadados.csv')
+
+# divida_meta['CD_PAI'] = trimmZeros(divida_meta['CD_PAI'])
+# divida = parse(divida_data,divida_meta)
+# printToFile("divida2012.json",divida)
+
+
+
+#### Informacao dos dados
 ## CD_METADADOS: Indice
 ## CD_PAI: nó pai
 ## FL_ARVORE: (bool) tem nivel inferior ou nao
