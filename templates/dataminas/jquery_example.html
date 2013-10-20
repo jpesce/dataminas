@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<input type="button" onclick="Dajaxice.dataminas.dajaxice_example(my_callback)" value="Get message from server!">
+<script>
+  function my_callback(data){
+      alert(data.message);
+  }
+</script>
+Teste
+{% endblock %}

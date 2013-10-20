@@ -1,5 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Teste
+<div class="header-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 header-slogan">
+        <h2>Acesso <strong>aberto</strong> para todos</h2>
+        <p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit?  It actually says that in the little book that comes with it: the most popular gun in American crime.</p>
+      </div>
+      <div class="col-md-4 center header-image">
+        <img src="/static/img/data-header-icon.png" height="180px"/>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 esferas">
+      <h2>Explore os dados do governo</h2>
+      <p>Excolha uma das três esferas:<br/><br/></p>
+      <div class="arrecadacao col-md-3 esfera">
+        <a href="#">
+          <img src="/static/img/arrecadacao-icon.png" width="64px"/>
+          <h4>Arrecadação</h4>
+          <p>Valores recebidos do orçamento Federal.</p>
+        </a>
+      </div>
+      <div class="despesa col-md-3 col-md-offset-1 esfera">
+        <a href="#">
+          <img src="/static/img/despesa-icon.png" width="64px"/>
+          <h4>Despesa</h4>
+          <p>Valores que saem do caixa estaual.</p>
+      </a>
+      </div>
+      <div href="#" class="divida col-md-3 col-md-offset-1 esfera">
+        <a href="#">
+          <img src="/static/img/divida-icon.png" width="64px"/>
+          <h4>Dívida Pública</h4>
+          <p>Valores que são emprestados ao estado.</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3 col-md-offset-1 anomalias">
+      <h4>Mais votadas</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#">
+          <strong>Data:</strong> Jan/2013<br/>
+          <strong>Tipo:</strong> Arrecação<br/>
+          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        </a></li>
+        <li><a href="#">
+          <strong>Data:</strong> Jan/2013<br/>
+          <strong>Tipo:</strong> Despesas<br/>
+          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        </a></li>
+        <li><a href="#">
+          <strong>Data:</strong> Jan/2013<br/>
+          <strong>Tipo:</strong> Dívida Pública<br/>
+          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        </a></li>
+        <li><a href="#">
+          <strong>Data:</strong> Jan/2013<br/>
+          <strong>Tipo:</strong> Despesas<br/>
+          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        </a></li>
+        <li><a href="#">
+          <strong>Data:</strong> Jan/2013<br/>
+          <strong>Tipo:</strong> Arrecação<br/>
+          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> <fb:comments-count href=http://example.com/></fb:comments-count> &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}

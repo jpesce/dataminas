@@ -1,4 +1,4 @@
-
+import sys
 import json
 from sklearn.linear_model import Ridge
 import numpy as np
@@ -8,9 +8,18 @@ import pylab
 
    
 data = json.load(open('sp501.json', 'r'))
+data = json.load(open('vander.json', 'r'))
+
+D = ['New York', 'Austin', 'San Francisco']
+if len(sys.argv) < 2:
+    dataset = D[0]
+else: dataset = D[int(sys.argv[1])]
+
+print 'Using', dataset
+
 Y = []
 for x in data:
-    Y.append(x['price'])
+    Y.append(x[dataset])
 
 X = [i for i in xrange(1, len(Y)+1)]
 
@@ -46,10 +55,10 @@ outliers_yy = [Y[i] for i in outliers_xx]
 
 pylab.scatter(X, Y, color='black')
 pylab.plot(X, Y2, color='purple')
-
+pylab.title('%s(%d) #outliers = %d/%d'%(dataset, len(X), len(outliers_x), len(outliers_xx)))
 
 pylab.scatter(outliers_x, outliers_y, color='orange')
 pylab.scatter(outliers_xx, outliers_yy, color='red')
 
-pylab.savefig('a.png')
+pylab.savefig('%s.png'%dataset)
 
