@@ -28,7 +28,7 @@ svg {
 }
 
 path {
-  fill: steelblue;
+  fill: #34495e;
 }
 
 .axis path,
@@ -165,16 +165,20 @@ function loadD3(data){
     .data(data) 
     .enter().append("circle")
     .attr("fill", function(d){
-      if(d.anomaly == true) return "red";
+      if(d.anomaly == true) return "#c0392b";
       else return "black";
       })
-    .attr("r", 3)
+    .attr("opacity", function(d){
+      if (d.anomaly == false) return 0.2;
+    })
+    .attr("r", 5)
     .attr("cx", getX)
     .attr("cy", getY)
     .on("click", function(d){
         location.href='example.html';
     })
     .on("mouseover", function(d){
+      d3.select(this).attr("opacity", 1);
       div.transition()
         .duration(200)
         .style("opacity", .9);
@@ -183,6 +187,7 @@ function loadD3(data){
         .style("top", (d3.event.pageY - 28) + "px");
     })
     .on("mouseout", function(d){
+      if (d.anomaly == false) d3.select(this).attr("opacity", 0.2);
       div.transition()
         .duration(500)
         .style("opacity", 0);
@@ -200,7 +205,7 @@ function brushed() {
       minmax_date = x.domain();
       show_me = (d.date > minmax_date[0] && d.date < minmax_date[1]); 
       if (show_me) {
-        return 3;
+        return 4;
       } else{
         return 0;
       }
