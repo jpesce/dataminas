@@ -21,7 +21,7 @@
 	{"pk": 20, "model": "dataminas.category", "fields": {"name": "Comunicacoes", "parent": 23, "name_url": "comunicacoes"}},
 	{"pk": 21, "model": "dataminas.category", "fields": {"name": "Seguranca-publica", "parent": 23, "name_url": "seguranca-publica"}},
 	{"pk": 22, "model": "dataminas.category", "fields": {"name": "Saneamento", "parent": 23, "name_url": "saneamento"}},
-	{"pk": 23, "model": "dataminas.category", "fields": {"name": "Despesa", "parent": "null", "name_url": "despesa"}},
+	{"pk": 23, "model": "dataminas.category", "fields": {"name": "Despesa", "parent": null, "name_url": "despesa"}},
 	{"pk": 24, "model": "dataminas.category", "fields": {"name": "Assistencia-social", "parent": 23, "name_url": "assistencia-social"}},
 	{"pk": 25, "model": "dataminas.category", "fields": {"name": "Saude", "parent": 23, "name_url": "saude"}},
 	{"pk": 26, "model": "dataminas.category", "fields": {"name": "Ciencia-e-tecnologia", "parent": 23, "name_url": "ciencia-e-tecnologia"}},

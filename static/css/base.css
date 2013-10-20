@@ -7,6 +7,7 @@ strong { font-weight: 700; }
 .navbar-nav li a { padding: 25px; text-transform: uppercase; font-weight: 600; }
 .navbar-toggle { margin-top: 18px; margin-bottom: 18px; }
 
+.margin-top-40 { margin-top: 40px; }
 .center { text-align: center; }
 
 .navbar .logo { padding-top: 10px; }
@@ -45,3 +46,9 @@ strong { font-weight: 700; }
 
 footer { background-color: #DDD; }
 footer .container { margin-top: 80px; padding-top: 40px; padding-bottom: 40px; }
+
+.subcategorias span.label.label-categorias { background-color: #777; }
+.subcategorias span.label.label-categorias { padding: 5px; margin-bottom: 4px; display: inline-block; }
+.subcategorias span.label.label-categorias  a { color: #fff; }
+.subcategorias span.label.label-categorias  a:hover { color: #DDD; text-decoration: none; }
+

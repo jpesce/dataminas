@@ -14,5 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'dataminas.views.home', name='home')
+    url(r'^$', 'dataminas.views.home', name='home'),
+    url(r'^dados/(?P<category>[a-z\-]+)/$', 'dataminas.views.show_category', name='show_category'),
+    url(r'^dados/(?P<category>[a-z\-]+)/(?P<subcategory>[a-z\-]+)/$', 'dataminas.views.show_subcategory', name='show_subcategory'),
 )

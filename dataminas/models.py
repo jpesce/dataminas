@@ -6,6 +6,8 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     name_url = models.CharField(max_length=255)
     parent = models.ForeignKey('Category', blank=True, null=True, default=None)
+    def __unicode__(self):
+        return u'%s' % (self.name)
 
 class Point(models.Model):
     year = models.IntegerField()

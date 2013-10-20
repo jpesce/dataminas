@@ -1,0 +1,20 @@
+[
+{
+    "pk": 1, 
+    "model": "dataminas.category", 
+    "fields": {
+        "name": "Pai", 
+        "parent": null, 
+        "name_url": "pai"
+    }
+},
+{
+    "pk": 2, 
+    "model": "dataminas.category", 
+    "fields": {
+        "name": "Filho do Pai", 
+        "parent": 1, 
+        "name_url": "filho-do-pai"
+    }
+}
+]

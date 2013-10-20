@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load date %}
+
+
+{% block head %}
+   <link rel="stylesheet" href="/static/css/focus.css">
+{% endblock %}
+
+
+{% block content %}
+<div class="container margin-top-40">
+  {% if categories|length > 1 %}
+  <h2>{{ categories.0.name }} de {{ categories.1.name }}</h2>
+    <ol class="breadcrumb">
+      <li><a href="{% url 'show_category' categories.0.name_url %}">{{ categories.0.name }}</a></li>
+      <li class="active">{{ categories.1.name }}</li>
+    </ol>
+  {% else %}
+  <h2>{{ categories.0.name }}</h2>
+  {% endif %}
+  <div class="row">
+    <div class="col-lg-9">
+      {% block texto %}
+      {% endblock %}        
+      <div id="focus"></div>
+    </div>
+    <div class="col-lg-3 subcategorias">
+      {% for subcategory in subcategories %}
+      <a href="{% url 'show_subcategory' categories.0.name_url subcategory.name_url %}"><span class="label label-categorias">{{ subcategory.name }}</span></a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+var data =[
+  {% for point in points %}
+  { "date": "{{ point.month }} {{ point.year }}", "value": {{ point.value }}, "id": {{ point.pk }}, "anomaly": {{ point.anomaly }}, "tooltip": "<h5>{{ point.month|int_to_month }} {{point.year}}</h5> <i class='icon-star'></i> {{ point.user_score }} &nbsp; <i class='icon-comments'></i> 22 &nbsp; <i class='icon-dashboard'></i> {{ point.algorithm_score }}%"},
+  {% endfor %}
+  ]
+</script>
+<script src="/static/js/focus.js"/>
+{% endblock %}
+
+

@@ -16,7 +16,12 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/base.css">
 
-    <script src="static/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/static/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    {% block head %}
+    {% endblock %}
   </head>
   <body>
   {% dajaxice_js_import %}
@@ -34,7 +39,7 @@
     <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
-      <a class="logo pull-left" href="#"><img src="/static/img/logo.png"/></a>
+    <a class="logo pull-left" href="{% url 'home' %}"><img src="/static/img/logo.png"/></a>
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
           <span class="sr-only">Toggle navigation</span>
@@ -69,10 +74,8 @@
       </div>
     </footer>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-    <script src="static/js/vendor/bootstrap.min.js"></script>
-    <script src="js/base.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+    <script src="/static/js/vendor/bootstrap.min.js"></script>
     {% block js %}
     {% endblock %}
   </body>

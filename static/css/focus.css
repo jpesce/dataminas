@@ -1,0 +1,36 @@
+circle{
+  cursor: pointer;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    padding: 10px;				
+    font: 12px sans-serif;		
+    background: #000;	
+    color: #FFF;
+    border: 0px;		
+    pointer-events: none;			
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+path {
+  fill: #34495e;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
