@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+from unidecode import unidecode
 
 def trimmZeros(keyvector):
     result = []
@@ -11,7 +11,7 @@ def trimmZeros(keyvector):
 
 
 def read(path,columns={"CD_METADADOS": str, "CD_PAI": str}):
-    """ 
+    """
     Le dados, retira zeros das bordas, coloca CD_METADADOS como chave.
     (O panda suporta chaves repetidas)
     """
@@ -24,11 +24,12 @@ def read(path,columns={"CD_METADADOS": str, "CD_PAI": str}):
     return(data)
 
 
-def parse(data, meta, 
-          cols_data = ['AAEXERCICIO','CD_MENSAL','NR_VALOR','NR_VALOR2','NR_VALOR3'],
-          cols_meta = ['CD_PAI','NR_NIVEL'],
-          col_name  = 'DS_NOME_ESTRUTURA',
-          maxlevel  = 2 ):
+def parse(data, meta,
+          col_data = ['NR_VALOR','NR_VALOR2','NR_VALOR3'],
+          col_time = ['AAEXERCICIO','CD_MENSAL'],
+          col_meta = ['CD_PAI','NR_NIVEL'],
+          col_name = ['DS_NOME_ESTRUTURA'],
+          maxlevel = 2 ):
     """
     Retorna uma tabela desejavel:
     Seleciona as colunas a serem retiradas;
@@ -37,14 +38,16 @@ def parse(data, meta,
     """
     meta = meta[meta['NR_NIVEL'] <= maxlevel]
     for i in xrange(len(meta)):
-        meta.ix[i,col_name] = meta.ix[i,col_name].strip()
+        meta.ix[i,col_name[0]] = meta.ix[i,col_name[0]].strip()
 
-    result = data[cols_data].join(meta[cols_meta + [col_name]],how='inner')
+    result = data[col_data + col_time].join(meta[col_meta + col_name],how='inner')
     for i in xrange(len(result)):
         x = result.ix[i,"CD_PAI"]
         if x != '':
-            result.ix[i,"CD_PAI"] = meta.ix[x,col_name]
-    return(result.set_index(col_name))
+            result.ix[i,"CD_PAI"] = meta.ix[x,col_name[0]]
+            
+    result.set_index(col_name[0], inplace=True)
+    return(result)
 
 
 
@@ -70,27 +73,40 @@ def getChildren(key,df):
             ids.append(n)
     return(sorted(ids))
 
+def printToFile(path,data):
+    f = open(path,'w')
+    f.write("{"+",".join(
+        ['"'+ key + '":'+ data.loc[key].to_json(orient='records',double_precision=2)
+         for key in data.index.unique()])+
+        "}")
+    f.close()
+    
 
 desp_data = read('bruto/despesa_dados.csv')
 desp_meta = read('bruto/despesa_metadados.csv')
 desp_meta['CD_PAI'] = trimmZeros(desp_meta['CD_PAI'])
 desp=parse(desp_data,desp_meta)
-f=open("despesa2012.json","w")
-f.write(desp.to_json(orient="index",double_precision=2))
-f.close()
+printToFile("despesa.json",desp)
+
+
+desp_anuais = pd.read_csv("bruto/despesas_nivel_2.csv")
+printToFile("despesa.json",desp_anuais)
 
 arrec_data = read('bruto/arrecadacao_dados.csv')
 arrec_meta  = read('bruto/arrecadacao_metadados.csv')
 arrec_meta['CD_PAI'] = trimmZeros(arrec_meta['CD_PAI'])
 arrec=parse(arrec_data,arrec_meta)
-f=open("arrecadacao2012.json","w")
-f.write(arrec.to_json(orient="index",double_precision=2))
-f.close()
+printToFile("arrecadacao2012.json",arrec)
 
-desp_anuais = pd.read_csv("bruto/despesas_nivel_2.csv")
-f=open("despesa.json","w")
-f.write(desp_anuais.to_json(orient="index",double_precision=2))
-f.close()
+arrec_anuais = pd.read_csv("bruto/arrecadacao_nivel_1.csv")
+printToFile("arrecadacao.json",arrec_anuais)
+
+divida_data = read('bruto/divida_dados.csv')
+divida_meta = read('bruto/divida_metadados.csv')
+
+divida_meta['CD_PAI'] = trimmZeros(divida_meta['CD_PAI'])
+divida = parse(divida_data,divida_meta)
+printToFile("divida2012.json",divida)
 
 
 ## CD_METADADOS: Indice
@@ -105,5 +121,3 @@ f.close()
 ## NR_VALOR: Valor previsto inicial / despesa realizada
 ## NR_VALOR2: Valor previsto atualizado / Valor emepenho
 ## NR_VALOR3: valor efetivado acumulado / NaN
-
-
