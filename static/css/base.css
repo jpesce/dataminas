@@ -23,8 +23,8 @@ strong { font-weight: 700; }
 .header-image { margin-top: 90px; }
 @media (max-width: 992px) { .header-image {display:none;} }
 
-@media (min-width: 992px) { .esfera { min-height: 241px; width: 27.777777778% } }
-@media (min-width: 1200px) { .esfera { min-height: 224px; } }
+@media (min-width: 992px) { .esfera { min-height: 176px; width: 27.777777778% } }
+@media (min-width: 1200px) { .esfera { min-height: 0px; } }
 .esfera { padding-bottom: 30px; }
 .esfera a:hover { text-decoration: none; color: #FFF; }
 .esfera a { display: block; padding-top: 25px; padding-right: 25px; padding-left: 25px; color: #FFF; text-align: center;}
