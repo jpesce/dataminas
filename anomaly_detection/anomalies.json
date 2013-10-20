@@ -1,0 +1,12 @@
+[
+{
+    "pk": 1, 
+    "model": "dataminas.anomaly", 
+    "fields": {
+        "date": "2013-10-01", 
+        "user_score": 0, 
+        "algorithm_score": 80.0, 
+        "data_type": "despesa"
+    }
+}
+]

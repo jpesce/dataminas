@@ -16,16 +16,18 @@ strong { font-weight: 700; }
   -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;
   color: #FFF; margin-bottom: 40px;
 }
-.header-wrapper h2 { font-size: 48px; margin-top: 0px; margin-bottom: 20px; text-transform: uppercase; }
+.header-wrapper h2 { font-weight: 400; font-size: 42px; margin-top: 0px; margin-bottom: 20px; text-transform: uppercase; }
 .header-wrapper p { font-size: 18px; font-weight: 300; line-height: 1.5em;  }
 .header-slogan { margin-top:100px; margin-bottom: 100px; }
 .header-image { margin-top: 90px; }
 @media (max-width: 992px) { .header-image {display:none;} }
 
-.esfera { padding: 0px; }
+@media (min-width: 992px) { .esfera { min-height: 241px; width: 27.777777778% } }
+@media (min-width: 1200px) { .esfera { min-height: 224px; } }
+.esfera { padding-bottom: 30px; }
 .esfera a:hover { text-decoration: none; color: #FFF; }
 .esfera a { display: block; padding-top: 25px; padding-right: 25px; padding-left: 25px; color: #FFF; text-align: center;}
-.esfera p { font-weight: 300; opacity: 0.8; filter:alpha(opacity=80); min-height: 4.5em; font-size: 12px; }
+.esfera p { font-weight: 300; opacity: 0.8; filter:alpha(opacity=80); min-height: 100%; font-size: 12px; }
 .arrecadacao { background-color: #27AE60; }
 .arrecadacao:hover { background-color: #2ECC71; }
 .despesa { background-color: #2C3E50; }
