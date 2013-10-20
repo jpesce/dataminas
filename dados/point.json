@@ -1,0 +1,26 @@
+[
+{
+    "pk": 1, 
+    "model": "dataminas.point", 
+    "fields": {
+        "category": 2, 
+        "user_score": 0, 
+        "value": "100.10", 
+        "month": 1, 
+        "algorithm_score": 88, 
+        "year": 2012
+    }
+},
+{
+    "pk": 2, 
+    "model": "dataminas.point", 
+    "fields": {
+        "category": 2, 
+        "user_score": 0, 
+        "value": "88.88", 
+        "month": 2, 
+        "algorithm_score": 77, 
+        "year": 2010
+    }
+}
+]
