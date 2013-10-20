@@ -89,7 +89,9 @@ desp=parse(desp_data,desp_meta)
 printToFile("despesa.json",desp)
 
 
-desp_anuais = pd.read_csv("bruto/despesas_nivel_2.csv")
+desp_anuais = pd.concat(
+    [pd.read_csv("bruto/despesas_nivel_1.csv"),
+     pd.read_csv("bruto/despesas_nivel_2.csv")])
 printToFile("despesa.json",desp_anuais)
 
 arrec_data = read('bruto/arrecadacao_dados.csv')
@@ -98,7 +100,10 @@ arrec_meta['CD_PAI'] = trimmZeros(arrec_meta['CD_PAI'])
 arrec=parse(arrec_data,arrec_meta)
 printToFile("arrecadacao2012.json",arrec)
 
-arrec_anuais = pd.read_csv("bruto/arrecadacao_nivel_1.csv")
+
+arrec_anuais = pd.concat([
+    pd.read_csv("bruto/arrecadacao_nivel_1.csv"),
+    pd.read_csv("bruto/arrecadacao_nivel_2.csv")])
 printToFile("arrecadacao.json",arrec_anuais)
 
 divida_data = read('bruto/divida_dados.csv')
