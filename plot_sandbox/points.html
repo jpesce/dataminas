@@ -31,6 +31,10 @@ path {
 <body>
 <h1 style="text-align:center"> HackathonMG - @Champs </h1>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- my js array -->
+<script type="text/javascript" src="array.js"></script>
+
 <script>
 
 var margin = {top: 10, right: 10, bottom: 100, left: 40},
@@ -39,7 +43,7 @@ var margin = {top: 10, right: 10, bottom: 100, left: 40},
     height = 500 - margin.top - margin.bottom,
     height2 = 500 - margin2.top - margin2.bottom;
 
-var parseDate = d3.time.format("%b %Y").parse;
+var parseDate = d3.time.format("%m %Y").parse;
 
 var x = d3.time.scale().range([0, width]),
     x2 = d3.time.scale().range([0, width]),
@@ -59,7 +63,7 @@ var getX = function(d){
 };
 
 var getY = function(d){
-  return y(d.price);
+  return y(d.value);
 }
 
 var area = d3.svg.area()
@@ -72,7 +76,7 @@ var area2 = d3.svg.area()
     .interpolate("monotone")
     .x(function(d) { return x2(d.date); })
     .y0(height2)
-    .y1(function(d) { return y2(d.price); });
+    .y1(function(d) { return y2(d.value); });
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -90,15 +94,15 @@ var focus = svg.append("g")
 var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-d3.json("sp501.json", function(error, data) {
-
+//d3.json("sp501.json", function(error, data) {
+function loadD3(data){
   data.forEach(function(d) {
     d.date = parseDate(d.date);
-    d.price = +d.price;
+    d.value = +d.value;
   });
 
   x.domain(d3.extent(data.map(function(d) { return d.date; })));
-  y.domain([0, d3.max(data.map(function(d) { return d.price; }))]);
+  y.domain([0, d3.max(data.map(function(d) { return d.value; }))]);
   x2.domain(x.domain());
   y2.domain(y.domain());
 
@@ -137,11 +141,16 @@ d3.json("sp501.json", function(error, data) {
     .selectAll() 
     .data(data) 
     .enter().append("circle")
-    .attr("fill", "red")
+    .attr("fill", function(d){
+      if(d.anomaly == true) return "red";
+      else return "black";
+      })
     .attr("r", 3)
     .attr("cx", getX)
     .attr("cy", getY);
-});
+}
+
+loadD3(data);
 
 function brushed() {
   x.domain(brush.empty() ? x2.domain() : brush.extent());
