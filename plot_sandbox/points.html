@@ -6,6 +6,23 @@ body {
   text-align: center
 }
 
+circle{
+  cursor: pointer;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 60px;					
+    height: 28px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
 svg {
   font: 10px sans-serif;
 }
@@ -36,6 +53,11 @@ path {
 <script type="text/javascript" src="array.js"></script>
 
 <script>
+
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0)
+    .text(function(d){return d;})
 
 var margin = {top: 10, right: 10, bottom: 100, left: 40},
     margin2 = {top: 430, right: 10, bottom: 20, left: 40},
@@ -99,6 +121,7 @@ function loadD3(data){
   data.forEach(function(d) {
     d.date = parseDate(d.date);
     d.value = +d.value;
+    d.tooltip = "TOOLTIP: </a>" + d.value;
   });
 
   x.domain(d3.extent(data.map(function(d) { return d.date; })));
@@ -147,7 +170,23 @@ function loadD3(data){
       })
     .attr("r", 3)
     .attr("cx", getX)
-    .attr("cy", getY);
+    .attr("cy", getY)
+    .on("click", function(d){
+        location.href='example.html';
+    })
+    .on("mouseover", function(d){
+      div.transition()
+        .duration(200)
+        .style("opacity", .9);
+      div.html(d.tooltip)
+        .style("left", (d3.event.pageX) + "px")  
+        .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function(d){
+      div.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
 }
 
 loadD3(data);
@@ -166,7 +205,7 @@ function brushed() {
         return 0;
       }
       })
-    .attr("cx", getX)
+    .attr("cx", getX) 
     .attr("cy", getY);
 }
 
