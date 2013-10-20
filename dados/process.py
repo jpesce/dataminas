@@ -90,30 +90,48 @@ def printToFile(path,data):
         "}")
     f.close()
     
+def read_and_convert(in_paths,out_path):
+    if type(in_paths) == type([]):
+        dfs=[]
+        for f in in_paths:
+            dfs.append(pd.read_csv(f))
+            d = pd.concat(dfs)
+    else:
+        d = pd.read_csv(in_paths)
+    d = d[(d['AAEXERCICIO'] < 2013) |
+          (d['CD_MENSAL'] < 11)]
+    printToFile(out_path,d)
+    
+read_and_convert(["bruto/despesas_nivel_1.csv","bruto/despesas_nivel_2.csv"],
+                 "despesa.json")
 
-desp_data = read('bruto/despesa_dados.csv')
+read_and_convert(["bruto/arrecadacao_nivel_1.csv","bruto/arrecadacao_nivel_2.csv"],
+                 "arrecadacao.json")
+
+read_and_convert("bruto/divida_nivel_1.csv","divida.json")
+
+# desp_anuais = pd.concat(
+#     [pd.read_csv("bruto/despesas_nivel_1.csv"),
+#      pd.read_csv("bruto/despesas_nivel_2.csv")])
+# desp_anuais = desp_anuais[(desp_anuais['AAEXERCICIO'] < 2013) |
+#                           (desp_anuais['CD_MENSAL'] < 11)]
+# printToFile("despesa.json",desp_anuais)
 
 
-desp_anuais = pd.concat(
-    [pd.read_csv("bruto/despesas_nivel_1.csv"),
-     pd.read_csv("bruto/despesas_nivel_2.csv")])
-printToFile("despesa.json",desp_anuais)
+# arrec_anuais = pd.concat([
+#     pd.read_csv("bruto/arrecadacao_nivel_1.csv"),
+#     pd.read_csv("bruto/arrecadacao_nivel_2.csv")])
+# printToFile("arrecadacao.json",arrec_anuais)
 
-
-arrec_anuais = pd.concat([
-    pd.read_csv("bruto/arrecadacao_nivel_1.csv"),
-    pd.read_csv("bruto/arrecadacao_nivel_2.csv")])
-printToFile("arrecadacao.json",arrec_anuais)
-
-divida_anuais = pd.read_csv("bruto/divida_nivel_1.csv")
-printToFile("divida.json",divida_anuais)
+# divida_anuais = pd.read_csv("bruto/divida_nivel_1.csv")
+# printToFile("divida.json",divida_anuais)
 
 
 
 ###### PARSING DOS DADOS .CSV
 ### Essas operacoes processam a base de dados disponibilizada pelo movimentominas.
 ### Atualmente nos não estamos utilizando ela devido as suas limitacoes.
-
+# desp_data = read('bruto/despesa_dados.csv')
 # arrec_data = read('bruto/arrecadacao_dados.csv')
 # arrec_meta  = read('bruto/arrecadacao_metadados.csv')
 # arrec_meta['CD_PAI'] = trimmZeros(arrec_meta['CD_PAI'])
