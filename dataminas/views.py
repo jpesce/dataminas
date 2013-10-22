@@ -8,7 +8,9 @@ from dataminas.models import Category,Point
 import datetime
 
 def home(request):
-    return render_to_response('dataminas/home.html', context_instance=RequestContext(request))
+    points = Point.objects.filter(user_score__gte=1)
+    
+    return render_to_response('dataminas/home.html', {'points': points},context_instance=RequestContext(request))
 
 def show_subcategory(request, category, subcategory):
     categories = []
@@ -20,7 +22,7 @@ def show_subcategory(request, category, subcategory):
 
     # Define anomaly
     for point in points:
-        if point.algorithm_score > 50 or point.user_score > 0:
+        if point.algorithm_score > 60 or point.user_score > 0:
             point.anomaly = "true"
         else:
             point.anomaly = "false"
@@ -38,7 +40,7 @@ def show_category(request, category):
 
     # Define anomaly
     for point in points:
-        if point.algorithm_score > 50 or point.user_score > 0:
+        if point.algorithm_score > 60 or point.user_score > 0:
             point.anomaly = "true"
         else:
             point.anomaly = "false"

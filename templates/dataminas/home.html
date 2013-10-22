@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load date %}
 
 {% block content %}
 <div class="header-wrapper">
@@ -29,7 +30,7 @@
       Sintam-se livres para investigar!<br/><br/></p>
       <div class="esferas">
         <div class="arrecadacao col-md-3 esfera">
-          <a href="#">
+          <a href="{% url 'show_category' 'despesa' %}">
             <img src="/static/img/arrecadacao-icon.png" width="64px"/>
             <h4>Arrecadação</h4>
           </a>
@@ -41,7 +42,7 @@
           </a>
         </div>
         <div class="divida col-md-3 col-md-offset-1 esfera">
-          <a href="#">
+          <a href="{% url 'show_category' 'divida-publica' %}">
             <img src="/static/img/divida-icon.png" width="64px"/>
             <h4>Dívida Pública</h4>
           </a>
@@ -51,31 +52,13 @@
     <div class="col-md-3 col-md-offset-1 anomalias">
       <h4>Mais votadas</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#">
-          <strong>Data:</strong> Jan/2013<br/>
-          <strong>Tipo:</strong> Arrecação<br/>
-          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
+        {% for point in points %}
+        <li><a href="{% url 'show_point' point.pk %}">
+          <strong>Data:</strong> {{ point.month|int_to_month}}/{{ point.year }}<br/>
+          <strong>Tipo:</strong> {{ point.category.name }}<br/>
+          <i class="icon-star"></i>{{ point.user_score }} &nbsp; <i class="icon-comments"></i> 0 &nbsp; <i class="icon-dashboard"></i>{{ point.algorithm_score }}<br/>
         </a></li>
-        <li><a href="#">
-          <strong>Data:</strong> Jan/2013<br/>
-          <strong>Tipo:</strong> Despesas<br/>
-          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
-        </a></li>
-        <li><a href="#">
-          <strong>Data:</strong> Jan/2013<br/>
-          <strong>Tipo:</strong> Dívida Pública<br/>
-          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
-        </a></li>
-        <li><a href="#">
-          <strong>Data:</strong> Jan/2013<br/>
-          <strong>Tipo:</strong> Despesas<br/>
-          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> 22 &nbsp; <i class="icon-dashboard"></i> 100%<br/>
-        </a></li>
-        <li><a href="#">
-          <strong>Data:</strong> Jan/2013<br/>
-          <strong>Tipo:</strong> Arrecação<br/>
-          <i class="icon-star"></i> 10 &nbsp; <i class="icon-comments"></i> <fb:comments-count href=http://example.com/></fb:comments-count> &nbsp; <i class="icon-dashboard"></i> 100%<br/>
-        </a></li>
+        {% endfor %}
       </ul>
     </div>
   </div>

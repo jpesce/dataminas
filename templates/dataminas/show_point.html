@@ -13,11 +13,14 @@
       <br/>
       <p><strong>Valor:</strong> R${{ point.value }}</p>
       <p><strong>Data:</strong> {{ point.month|int_to_month }} {{ point.year }}</p>
-      <p><strong>Número de alertas:</strong> {{ point.user_score }}</p>
-      <p><strong>Alerta automático:</strong> {{ point.algorithm_score }}%</p>
+      <p><strong><i class="icon-dashboard"></i> Alerta automático:</strong> {{ point.algorithm_score }}%</p>
+      <p><strong><i class="icon-star"></i> Alertas de usuários:</strong> <span id="alerta_valor">{{ point.user_score }}</span></p>
+      <button type="button" class="btn btn-info" id="alertar" onclick="Dajaxice.dataminas.alertar(my_callback, {'pk': {{point.pk}}})"><i class="icon-star"></i> Alertar</button>
+      <script>function my_callback(data){ $("#alertar").prop('disabled', true); $("#alerta_valor").html(parseInt($("#alerta_valor").html())+1) }
+       </script>
     </div>
     <div class="col-lg-5">
-      <h4>Comentários</h4>
+      <h4><i class="icon-comments"></i> Comentários</h4>
       <div class="fb-comments" data-href="{{ request.build_absolute_uri|urlencode }}" data-numposts="4" data-width="400" data-order-by="reverse_time"></div>
     </div>
   </div>

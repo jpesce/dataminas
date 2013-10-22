@@ -26,17 +26,21 @@
     </div>
     <div class="col-lg-3 subcategorias">
       <h4>Categorias</h4>
+      {% if subcategories|length > 0 %}
       {% for subcategory in subcategories %}
       <a href="{% url 'show_subcategory' categories.0.name_url subcategory.name_url %}"><span class="label label-categorias">{{ subcategory.name }}</span></a>
       {% endfor %}
+      {% else %}
+      <i>Não há categorias</i>
+      {% endif %}
     </div>
   </div>
 </div>
 
 <script>
 var data =[
-  {% for point in points %}
-  { "date": "{{ point.month }} {{ point.year }}", "value": {{ point.value }}, "id": {{ point.pk }}, "anomaly": {{ point.anomaly }}, "tooltip": "<h5>{{ point.month|int_to_month }} {{point.year}}</h5> <i class='icon-star'></i> {{ point.user_score }} &nbsp; <i class='icon-comments'></i> 22 &nbsp; <i class='icon-dashboard'></i> {{ point.algorithm_score }}%"},
+{% for point in points %}{%if forloop.first %}{% else %},{% endif %}
+  { "date": "{{ point.month }} {{ point.year }}", "value": {{ point.value }}, "id": {{ point.pk }}, "anomaly": {{ point.anomaly }}, "tooltip": "<h5>{{ point.month|int_to_month }} {{point.year}}</h5> <i class='icon-star'></i> {{ point.user_score }} &nbsp; <i class='icon-comments'></i> 22 &nbsp; <i class='icon-dashboard'></i> {{ point.algorithm_score }}%"}
   {% endfor %}
   ]
 </script>

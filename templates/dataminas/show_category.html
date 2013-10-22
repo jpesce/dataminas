@@ -1,5 +1,10 @@
 {% extends 'dataminas/show_subcategory.html' %}
 
 {% block texto %}
-<p>Texto</p>
+{% if categories.0.name_url = "despesa" %}
+<p>Esse gráfico mostra quais foram as despesas empenhadas pelo estado em cada mes. Toda despesa do estado deve ser empenhada antes de ser realizada. Um empenho é o compromisso, firmado pelo estado, de pagar uma determinada quantia de dinheiro a alguém. O empenho não signifca que o valor foi gasto naquele mes, mas que o estado se comprometeu a pagar esse valor em algum momento. É raro que o governo não pague um valor emepnhado!</p>
+{% endif %}
+{% if categories.0.name_url = "divida-publica" %}
+<p>Esse gráfico mostra a dívida pública interna do estado. A divida pública externa ainda não está disponível. Vale lembrar que a dívida pública do estado é regulada pela lei de <a href="https://pt.wikipedia.org/wiki/Lei_de_Responsabilidade_Fiscal">responsabilidade fiscal</a>, que impõe um teto proporcional à arrecadação do estado.</p>
+{% endif %}
 {% endblock %}
