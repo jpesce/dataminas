@@ -118,14 +118,18 @@ def read_and_filter(in_paths):
     return d
     
 def add_parent(data,parent_name):
-    dt = data[data['NR_NIVEL']==1]
+    dt = data[data['NR_NIVEL']==1]    
     dt_sums = data.groupby(['AAEXERCICIO','CD_MENSAL'],as_index=False).sum()
     dt_sums.index = [url_friendly(parent_name)] * len(dt_sums.index)
-
+    dt_sums['CD_NOME_AMIGAVEL'] = [user_friendly(parent_name)] * len(dt_sums.index)   
     dt_sums['NR_NIVEL'] = 1
+
+    data['CD_PAI'] = [url_friendly(parent_name) 
+                      if pd.isnull(x) else x for x in data['CD_PAI']]
     data['NR_NIVEL'] += 1
-    
-    return data.append(dt_sums)
+    data = data.append(dt_sums)
+
+    return(data)
 
 
 desp = read_and_filter(["bruto/despesas_nivel_1.csv",
