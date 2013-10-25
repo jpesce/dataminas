@@ -52,8 +52,8 @@ def show_category(request, category):
 
 def show_point(request, pk):
     point = get_object_or_404(Point, pk=pk)
-    locale.setlocale(locale.LC_ALL, 'pt_BR')
-    point.value = locale.format('%.2f', point.value, grouping=True)
+    point.value = "{:,.2f}".format(point.value)
+    point.value = point.value.replace('.','$').replace(',','.').replace('$',',') # Replace . for , and the other way around. $ -> just a temp char
 
     return render_to_response('dataminas/show_point.html', { 'point': point }, context_instance=RequestContext(request))
 

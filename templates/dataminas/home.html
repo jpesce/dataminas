@@ -56,7 +56,7 @@
         <li><a href="{% url 'show_point' point.pk %}">
           <strong>Data:</strong> {{ point.month|int_to_month}}/{{ point.year }}<br/>
           <strong>Tipo:</strong> {{ point.category.name }}<br/>
-          <i class="icon-star"></i>{{ point.user_score }} &nbsp; <i class="icon-comments"></i> 0 &nbsp; <i class="icon-dashboard"></i>{{ point.algorithm_score }}<br/>
+          <i class="icon-star"></i>{{ point.user_score }} &nbsp; <i class="icon-comments"></i> 0 &nbsp; <i class="icon-dashboard"></i> {{ point.algorithm_score }}%<br/>
         </a></li>
         {% endfor %}
       </ul>
