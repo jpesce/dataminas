@@ -81,7 +81,7 @@ def url_friendly(string,fmt="latin1"):
         return None
     s = unicode(string,fmt)
     dec = unidecode(s)
-    return (str(dec).lower().replace(" ","-").replace(".",""))
+    return (str(dec).lower().replace(" ","-").replace(".","").replace(",",""))
 
 
 def user_friendly(string):
@@ -99,7 +99,7 @@ def print_to_file(path,data):
         "}")
     f.close()
     
-def read_and_convert(in_paths,out_path):
+def read_and_filter(in_paths):
     if type(in_paths) == type([]):
         dfs=[]
         for f in in_paths:
@@ -115,33 +115,30 @@ def read_and_convert(in_paths,out_path):
     d["CD_PAI"]=d["CD_PAI"].apply(url_friendly)
     d.index = [url_friendly(x) for x in d.index]
     #d.index.apply(url_friendly)
-    print_to_file(out_path,d)
     return d
     
-desp=read_and_convert(["bruto/despesas_nivel_1.csv","bruto/despesas_nivel_2.csv"],
-                      "despesa.json")
+def add_parent(data,parent_name):
+    dt = data[data['NR_NIVEL']==1]
+    dt_sums = data.groupby(['AAEXERCICIO','CD_MENSAL'],as_index=False).sum()
+    dt_sums.index = [url_friendly(parent_name)] * len(dt_sums.index)
 
-arrec=read_and_convert(["bruto/arrecadacao_nivel_1.csv",
-                        "bruto/arrecadacao_nivel_2.csv"],
-                       "arrecadacao.json")
-
-divida=read_and_convert("bruto/divida_nivel_1.csv","divida.json")
-
-# desp_anuais = pd.concat(
-#     [pd.read_csv("bruto/despesas_nivel_1.csv"),
-#      pd.read_csv("bruto/despesas_nivel_2.csv")])
-# desp_anuais = desp_anuais[(desp_anuais['AAEXERCICIO'] < 2013) |
-#                           (desp_anuais['CD_MENSAL'] < 11)]
-# printToFile("despesa.json",desp_anuais)
+    dt_sums['NR_NIVEL'] = 1
+    data['NR_NIVEL'] += 1
+    
+    return data.append(dt_sums)
 
 
-# arrec_anuais = pd.concat([
-#     pd.read_csv("bruto/arrecadacao_nivel_1.csv"),
-#     pd.read_csv("bruto/arrecadacao_nivel_2.csv")])
-# printToFile("arrecadacao.json",arrec_anuais)
+desp = read_and_filter(["bruto/despesas_nivel_1.csv",
+                      "bruto/despesas_nivel_2.csv"])
+print_to_file("despesa.json",desp)
 
-# divida_anuais = pd.read_csv("bruto/divida_nivel_1.csv")
-# printToFile("divida.json",divida_anuais)
+arrec = read_and_filter(["bruto/arrecadacao_nivel_1.csv", 
+                       "bruto/arrecadacao_nivel_2.csv"])
+arrec = add_parent(arrec,"arrecadacao")
+print_to_file("arrecadacao.json",arrec)
+
+divida = read_and_filter("bruto/divida_nivel_1.csv")
+print_to_file("divida.json",divida)
 
 
 
