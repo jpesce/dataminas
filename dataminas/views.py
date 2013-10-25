@@ -6,7 +6,6 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from dataminas.models import Category,Point
 import datetime
-import locale
 
 def home(request):
     points = Point.objects.all().order_by('-user_score')[:5]
