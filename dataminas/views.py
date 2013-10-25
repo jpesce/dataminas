@@ -6,9 +6,10 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from dataminas.models import Category,Point
 import datetime
+import locale
 
 def home(request):
-    points = Point.objects.filter(user_score__gte=1)
+    points = Point.objects.all().order_by('-user_score')[:5]
     
     return render_to_response('dataminas/home.html', {'points': points},context_instance=RequestContext(request))
 
@@ -18,7 +19,7 @@ def show_subcategory(request, category, subcategory):
     categories.append(get_object_or_404(Category, name_url=subcategory))
 
     # Get points
-    points = Point.objects.filter(category=categories[-1])
+    points = Point.objects.filter(category=categories[-1]).order_by('year', 'month')
 
     # Define anomaly
     for point in points:
@@ -28,7 +29,7 @@ def show_subcategory(request, category, subcategory):
             point.anomaly = "false"
 
     # Get subcategories
-    subcategories = Category.objects.filter(parent=categories[0])
+    subcategories = Category.objects.filter(parent=categories[0]).order_by('name')
     return render_to_response('dataminas/show_subcategory.html', { 'categories': categories, 'subcategories': subcategories,  'points': points }, context_instance=RequestContext(request))
 
 def show_category(request, category):
@@ -36,7 +37,7 @@ def show_category(request, category):
     print categories[0].name
 
     # Get points
-    points = Point.objects.filter(category=categories[0])
+    points = Point.objects.filter(category=categories[0]).order_by('year', 'month')
 
     # Define anomaly
     for point in points:
@@ -46,11 +47,13 @@ def show_category(request, category):
             point.anomaly = "false"
 
     # Get subcategories
-    subcategories = Category.objects.filter(parent=categories[0])
+    subcategories = Category.objects.filter(parent=categories[0]).order_by('name')
     return render_to_response('dataminas/show_category.html', { 'categories': categories, 'subcategories': subcategories,  'points': points }, context_instance=RequestContext(request))
 
 def show_point(request, pk):
     point = get_object_or_404(Point, pk=pk)
+    locale.setlocale(locale.LC_ALL, 'pt_BR')
+    point.value = locale.format('%.2f', point.value, grouping=True)
 
     return render_to_response('dataminas/show_point.html', { 'point': point }, context_instance=RequestContext(request))
 
