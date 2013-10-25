@@ -52,7 +52,7 @@ def show_category(request, category):
 
 def show_point(request, pk):
     point = get_object_or_404(Point, pk=pk)
-    locale.setlocale(locale.LC_ALL, 'pt_BR')
+    locale.setlocale(locale.LC_ALL, 'en_US')
     point.value = locale.format('%.2f', point.value, grouping=True)
 
     return render_to_response('dataminas/show_point.html', { 'point': point }, context_instance=RequestContext(request))
