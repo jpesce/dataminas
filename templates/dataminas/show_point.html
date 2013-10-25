@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load date %}
+{% load absolute %}
 
 {% block content %}
 <div class="container margin-top-40">
@@ -20,7 +21,7 @@
        </script>
     </div>
     <div class="col-lg-5">
-      <h4><i class="icon-comments"></i> Comentários</h4>
+      <h4><i class="icon-comments"></i><fb:comments-count href={% absolute "show_point" point.pk %}></fb:comments-count> Comentários </h4>
       <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="4" data-width="400" data-order-by="reverse_time"></div>
     </div>
   </div>
