@@ -1,4 +1,5 @@
 {% load dajaxice_templatetags %}
+{% load absolute %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -71,6 +72,14 @@
     <footer class="center">
       <div class="container">
         <img src="/static/img/desenvolvido.png" height="200px"/>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style " style="width: 300px; margin: 30px auto;">
+          <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:href="http://www.facebook.com/minasdata"></a>
+          <a class="addthis_button_tweet" tw:text="{% absolute 'home' %} - Uma maneira nova de mostrar os gastos e a arrecadação do governo de Minas!"></a>
+          <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-526b125a000ace74"></script>
+        <!-- AddThis Button END -->
       </div>
     </footer>
 
