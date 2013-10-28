@@ -1,7 +1,9 @@
-var div = d3.select("#focus").append("div")	
-    .attr("class", "tooltip")				
-    .style("opacity", 0)
-    .text(function(d){return d;})
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return d.tooltip;
+  })
 
 var margin = {top: 10, right: 10, bottom: 100, left: 100},
     margin2 = {top: 430, right: 10, bottom: 20, left: 100},
@@ -47,6 +49,8 @@ var area2 = d3.svg.area()
 var svg = d3.select("#focus").append("svg")
     .attr("width", "100%")
     .attr("height", height + margin.top + margin.bottom);
+
+svg.call(tip);
 
 svg.append("defs").append("clipPath")
     .attr("id", "clip")
@@ -122,18 +126,11 @@ function loadD3(data){
     })
     .on("mouseover", function(d){
       d3.select(this).attr("opacity", 1);
-      div.transition()
-        .duration(200)
-        .style("opacity", .9);
-      div.html(d.tooltip)
-        .style("left", (d3.event.pageX - 190) + "px")  
-        .style("top", (d3.event.pageY -180) + "px");
+      tip.show(d);
     })
     .on("mouseout", function(d){
       if (d.anomaly == false) d3.select(this).attr("opacity", 0.2);
-      div.transition()
-        .duration(500)
-        .style("opacity", 0);
+      tip.hide(d);
     });
 }
 
