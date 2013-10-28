@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load date %}
+{% load absolute %}
+
+{% block content %}
+<div class="container margin-top-40">
+<div class="row">
+<div class="col-md12">
+
+  <h2>Sobre</h2>
+  <p>O Dataminas é resultado de um Hackathon organizado pelo <a href="http://movimentominas.mg.gov.br/">Movimento Minas</a> como iniciativa para facilitar o acesso a todos às informações do <a href="http://transparencia.mg.gov.br">Portal Transparência</a>. Nossa proposta é permitir a visualização temporal dos dados e chamar a população para participar e usar esses dados.</p>
+
+  <p>O site foi desenvolvido em <a href="https://www.djangoproject.com/">Django</a>, os gráficos foram gerados com a biblioteca <a href="http://d3js.org/">D3</a>. O código para gerar esse site está disponível no <a href="https://github.com/jpesce/dataminas"><i class="icon-github-alt"> GitHub</i></a>.</p>
+
+  <p>Nosso modelo para detectar anomalias é bem simples (mas um pouco técnico):</p>
+
+  <p>Primeiro, nós encaixamos um modelo polinômial nos dados para obter um valor que seria o esperado de cada mês. Nós comparamos o valor esperado ao valor que foi realmente efetuado, e assinalamos ao ponto um escore de 1 a 100, sendo 1 bem próximo do valor esperado, e 100 bem distante. Para ser mais preciso, um escore de 100 ocorrerá 0.1% das vezes caso o erro do modelo seja normalmente distribuído. Nós sinalizamos sempre que esse escore ultrapassa 60.</p>
+
+  <h3>Equipe</h3>
+  <p>Somos todos alunos da UFMG e trabalhamos no <a href="http://www.inweb.org.br/">Instituto Nacional de Pesquisa</a> na Web. Fizemos isso um pouco pelo desafio (adoramos D3 e Django!), e um pouco para contribuir na difusão do acesso à informação.</p>
+
+<ul>
+<li><strong>Diego Las Casas</strong> é psicólogo e analisa redes socias em seu mestrado no Centro de Analise de Modelagens e Performance de Sistemas (CAMPS).<br/>
+<a href="http://www.linkedin.com/in/diegolascasas" class="btn btn-primary btn-xs"><i class="icon-linkedin"></i> linkedin</a> <a href="https://twitter.com/diegolascasas" class="btn btn-info btn-xs"><i class="icon-twitter"></i> twitter</a> <br/><br/></li>
+
+<li><strong>Felipe Moraes</strong> é aluno do curso de computação e trabalha no Laboratório de Video Sobre Demanda (VOD). Seu interesse é na aplicação de Algoritmos de Aprendizado de Máquina em redes sociais. <br/> 
+<a href="http://www.linkedin.com/pub/felipe-moraes/3b/44a/434" class="btn btn-primary btn-xs"><i class="icon-linkedin"></i> linkedin</a><br/><br/></li>
+
+<li><strong>João Paulo Pesce</strong> é cientista da computação, cursa mestrado e estuda a aparentemente inexistente interseção de urbanismo e computação (jogue o <a href="http://www.urbanopticon.org">Urbanopticon</a>!), além de fazer pesquisas em redes sociais. </br>
+<a href="http://www.linkedin.com/in/joaopesce" class="btn btn-primary btn-xs"><i class="icon-linkedin"></i> linkedin</a> <a href="https://twitter.com/jpesce" class="btn btn-info btn-xs"><i class="icon-twitter"></i> twitter</a> <a href="https://dcc.ufmg.br/~jpesce" class="btn btn-success btn-xs"><i class="icon-globe"></i> www</a><br/> <br/></li>
+
+<li><strong>Thales Filizola</strong> é cientista da computação, cursa mestrado e trabalha com Sistemas de Recomendação no Laboratório de Recuperação de Informação. <br/>
+<a href="http://www.linkedin.com/in/thalesfc" class="btn btn-primary btn-xs"><i class="icon-linkedin"></i> linkedin</a><br/><br/></li>
+
+<li><strong>Vinicius Flores</strong> é cientista da computação, graduando em economia, e mestrando em computação. Trabalha no CAMPS, com análise de Redes Complexas. <br/>
+<a href="http://www.linkedin.com/in/thalesfc" class="btn btn-primary btn-xs"><i class="icon-linkedin"></i> linkedin</a><br/><br/></li>
+</ul>
+
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,15 +1,20 @@
 {% load dajaxice_templatetags %}
+{% load absolute %}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html prefix="og: http://ogp.me/ns#" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html prefix="og: http://ogp.me/ns#" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html prefix="og: http://ogp.me/ns#" class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>Dataminas</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta property="og:title" content="Dataminas" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:image" content="{{ ABSOLUTE_ROOT }}/static/img/fb_share_highres.jpg" />
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
@@ -58,12 +63,12 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dados <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="{% url 'show_category' 'despesa'%}">Arrecadação</a></li>
+              <li><a href="{% url 'show_category' 'arrecadacao'%}">Arrecadação</a></li>
               <li><a href="{% url 'show_category' 'despesa'%}">Despesa</a></li>
               <li><a href="{% url 'show_category' 'divida-publica'%}">Dívida Pública</a></li>
             </ul>
           </li>
-          <li><a href="#">Sobre</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div>
@@ -73,6 +78,14 @@
     <footer class="center">
       <div class="container">
         <img src="/static/img/desenvolvido.png" height="200px"/>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style " style="width: 300px; margin: 30px auto;">
+          <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:href="http://www.facebook.com/minasdata"></a>
+          <a class="addthis_button_tweet" tw:text="{% absolute 'home' %} - Uma maneira nova de mostrar os gastos e a arrecadação do governo de Minas!"></a>
+          <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-526b125a000ace74"></script>
+        <!-- AddThis Button END -->
       </div>
     </footer>
 

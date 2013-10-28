@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load date %}
+{% load absolute %}
 
 
 {% block head %}
@@ -44,7 +45,7 @@ var data = [
   "value": {{ point.value }}, 
   "id": {{ point.pk }}, 
   "anomaly": {{ point.anomaly }}, 
-  "tooltip": "<h5>{{ point.month|int_to_month }} {{point.year}}</h5> <i class='icon-star'></i> {{ point.user_score }} &nbsp; <i class='icon-comments'></i>  &nbsp; <i class='icon-dashboard'></i> {{ point.algorithm_score }}%"
+  "tooltip": "<h5>{{ point.month|int_to_month }} {{point.year}}</h5> <i class='icon-star'></i> {{ point.user_score }} &nbsp; <i class='icon-comments'></i><fb:comments-count href={% absolute "show_point" point.pk %}></fb:comments-count>  &nbsp; <i class='icon-dashboard'></i> {{ point.algorithm_score }}%"
 } {%if forloop.last %}{% else %},{% endif %}
 {% endfor %}
 ]

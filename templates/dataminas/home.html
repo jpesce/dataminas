@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load date %}
+{% load absolute %}
 
 {% block content %}
 <div class="header-wrapper">
@@ -23,14 +24,14 @@
       <p>Pegamos os dados do <a href="http://www.transparencia.mg.gov.br/">Portal de Transparencia do Estado de Minas Gerais</a> e disponibilizamos em um gráfico interativo.
       Escolha qual área você quer visualizar: você pode ajustar o foco para o período de tempo que quiser.</p>
 
-      <p>Se encontrar algum ponto que achar suspeito, clique nele e avise os outos.
+      <p>Se encontrar algum ponto que achar suspeito, clique nele e avise aos outos.
       Se ver algum ponto que já foi sinalizado e concordar com o alerta, sinalize também!</p>
 
       <p>Nós já separamos alguns pontos que parecem suspeitos. 
       Sintam-se livres para investigar!<br/><br/></p>
       <div class="esferas">
         <div class="arrecadacao col-md-3 esfera">
-          <a href="{% url 'show_category' 'despesa' %}">
+          <a href="{% url 'show_category' 'arrecadacao' %}">
             <img src="/static/img/arrecadacao-icon.png" width="64px"/>
             <h4>Arrecadação</h4>
           </a>
@@ -56,7 +57,7 @@
         <li><a href="{% url 'show_point' point.pk %}">
           <strong>Data:</strong> {{ point.month|int_to_month}}/{{ point.year }}<br/>
           <strong>Tipo:</strong> {{ point.category.name }}<br/>
-          <i class="icon-star"></i>{{ point.user_score }} &nbsp; <i class="icon-comments"></i> 0 &nbsp; <i class="icon-dashboard"></i> {{ point.algorithm_score }}%<br/>
+          <i class="icon-star"></i>{{ point.user_score }} &nbsp; <i class="icon-comments"></i> <fb:comments-count href={% absolute "show_point" point.pk %}></fb:comments-count> &nbsp; <i class="icon-dashboard"></i> {{ point.algorithm_score }}%<br/>
         </a></li>
         {% endfor %}
       </ul>
