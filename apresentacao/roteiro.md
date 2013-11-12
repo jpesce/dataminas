@@ -1,23 +1,4 @@
-###Slide 1 - Hackathon
-
-Olá pessoal, meu nome é Thales. 
-
-Esse é o Diego.
-
-Nós vamos falar sobre a nossa participação no primeiro Hackthon do Governo de MG.
-
----
-###Slide 2 - Primeiro colocado
-
-Primeiro, destacando que 
-
-dentre os vários projetos interessantes,
-
-o nosso foi eleito o primeiro colocado.
-
----
-
-###Slide 3 - Quem somos?
+###Slide 1 - Quem somos?
 
 Quem Somos? 
 
@@ -29,7 +10,7 @@ Sendo 4 mestrandos e um aluno de gradução.
 
 ---
 
-###Slide 4 - Dataminas: Proposta
+###Slide 2 - Dataminas: Proposta
 
 Então pessoal, nos 2 dias de hackathon, 
 
@@ -51,7 +32,7 @@ a arrecadação com as despesas e as dívidas.
 
 ---
 
-###Slide 5 - Dataminas: Beneficios
+###Slide 3 - Dataminas: Beneficios
 
 Pensando na dificuldade que as pessoas tem em
 
@@ -127,3 +108,88 @@ que aquele dado específico é importante.
 
 Agora o Diego vai dar mais detalhes práticos do DATAMINAS.
 
+---
+
+###Slide 5 - Video (1m)
+
+Vou mostrar como funciona o nosso aplicativo.
+ Para acessar, basta digitar dataminas.info no seu navegador, tablet ou celular.
+
+Você é direcionado para a nossa página de apresentação, que tem uma interface suave em que é possível acessar os dados sobre arrecadação, despesa e dívida publica do estado. 
+
+---
+
+Vamos entrar nas despesas do estado.
+Aqui você vê um gráfico simples que mostra as despesas ao longo do tempo.
+**Dá para escolher uma janela de tempo melhor para você investigar através desse gráfico menor aqui em baixo.**
+
+Podemos escolher uma subcategoria das despesas para averiguar melhor. 
+Por exemplo: vamos ver as despesas em cultura.
+
+
+--- 
+
+Viu? Um gráfico só para elas.
+Também dá para ver algumas informações de cada mês do gráfico. 
+**Os pontos vermelhos são os que nósso algoritmo considera como anomalias.**
+
+Vamos clicar em um deles.
+
+--- 
+
+Aqui temos uma página só para o ponto clicado.
+**Parece que alguem já comentou nesse ponto. Vou comentar também!** 
+
+**Agora, vou alertar para esse ponto.** 
+Dá para ver que, como esse é um dos mais alertados, ele aparece na página inicial!
+
+---
+
+###Slide 6: Stacked Focus 
+
+Nós ainda temos algumas ideias que podem ser implementadas num futuro próximo.
+
+Por exemplo, a gente queria colocar várias camadas no gráfico, para mostrar como cada subcategoria compõe a categoria. 
+
+Tipo: vamos supor que a gente esta olhando para as despesas agora, e aquela camada verde é cultura. Daria pra ver quanto quanto da despesa foi direcionada para  cultura em cada momento do tempo!
+
+---
+
+###Slide 7: Mais Camadas
+Outra coisa que a gente quer fazer ainda é coletar todos os níveis dos dados do portal transparencia para ter mais detalhamento.
+
+Daí seria possivel ver tudo, até o gasto com faxina da camara dos deputados!
+
+---
+
+###Slide 8: Possibilidades
+De qualquer forma, esse nosso site levanta várias possiblidades. 
+
+Posso falar de algumas coisas que podem ser exploradas.
+
+
+---
+
+###Slide 11: Dialogo entre governo e sociedade
+Finalmente, nosso site usa tecnologias que podem fomentar o dialogo entre governo e sociedade. 
+
+O acesso à informação faz isso né: as pessoas vêem, e se entendem, começam a querer saber mais. 
+
+Se o governo consegue se articular, ele pode identificar essa cobrança e atender melhor aos cidadãos, fornecendo mais informacao interessante ou bolando politicas publicas mais eficazes. 
+
+---
+
+###Slide 4 - Caracteristicas
+
+O nosso codigo é livre, e quem quiser pode baixar no github, nesse endereco: jpesce/dataminas
+
+Os dados foram todos retirados do portal transparencia MG com um coletor que a gente fez.
+Nenhum numero foi alterado.
+
+---
+
+###Slide Final: obg
+
+Esperamos que tenham gostado, usem e divulguem o dataminas. 
+
+Nos ainda nao fizemos muita coisa relacionadas a divulgacao, vamos comecar agor, mas ja contamos com voces como primeiros usuários!
