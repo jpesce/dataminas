@@ -1,10 +1,12 @@
-###Slide 1 - Quem somos?
+###Slide 1 - equipe CHAMPS
 
-Quem Somos? 
+Olá pessoal, meu nome é Thales. 
+
+Esse é o Diego.
 
 A nossa equipe se chama CHAMPS.
 
-Somos todos alunos de Ciência da Computação na UFMG.
+Nós somos todos alunos de Ciência da Computação na UFMG.
 
 Sendo 4 mestrandos e um aluno de gradução.
 
@@ -12,13 +14,15 @@ Sendo 4 mestrandos e um aluno de gradução.
 
 ###Slide 2 - Dataminas: Proposta
 
-Então pessoal, nos 2 dias de hackathon, 
+Nos 2 dias de hackathon, 
 
-nos criamos o dataminas, 
+a gente desenvolveu o dataminas, 
 
-que é uma ferramenta que pode ser acessado de computador celular e tablets,
+que é:
 
-cujo objetivo é,
+um site que pode ser acessado de computador celular e tablets,
+
+para:
 
 ajudar as pessoas a entender as contas do governo.
 
@@ -32,27 +36,29 @@ a arrecadação com as despesas e as dívidas.
 
 ---
 
-###Slide 3 - Dataminas: Beneficios
+###Slide 5 - Dataminas: Beneficios
 
 Pensando na dificuldade que as pessoas tem em
 
-entender as contas e decisões do governo, 
+entender as contas e decisões do governo,
 
-a gente focou nos seguintes benefícios:
+a gente construiu o Dataminas 
+
+com base em 3 benefícios
 
 **1. Visualização**
 
-Um problema que a gente observou é 
+O primeiro benefício é visualização.
 
-a falta do contexto dos dados.
+Hoje, 
 
-Quando você acessa o portal da Transparência,
+quando você acessa o portal da Transparência,
 
 e procura por arrecadação
 
-o portal te cospe um número:
+o portal te solta um dado:
 
-70 milhões de arrecadação em janeiro de 2013.
+a arrecadação em janeiro de 2013 foi de 70 milhões.
 
 Mas você não entende o que esse número representa.
 
@@ -72,7 +78,7 @@ se 70 milhões de arrecadação é bom ou ruim.
 
 **Mineração de Dados**
 
-Outro beneficio da nosso proposta é em relação a mineração de dados.
+O segundo benfício é a mineração de dados.
 
 A gente fez um algoritmo que detecta automaticamente valores discrepantes das contas do governo. 
 
@@ -84,25 +90,25 @@ Porque elas podem focar nesses pontos que nosso algoritmo destacou
 
 **Interação**
 
-O último foco nosso é em aumentar o engajamento popular.
+O último benefício é a interactividade.
 
-Usando sua conta do Facebook, é póssível inserir comentários, postar notícias relacionadas e compartilhar com seus amigos.
+Usando sua conta do Facebook, é póssível inserir comentários, 
+
+postar notícias relacionadas e compartilhar com seus amigos.
 
 Além disso, a gente criou o botão ALERTAR 
 
 --
 
-O que significa alertar? significa dizer ao governo:
-
-Alertar é o usuário a construir o DATAMINAS.
-
 Quando o usuário alerta, 
 
 ele indica, 
 
-para o governo e outro usuários do site,
+para o governo,
 
-que aquele dado específico é importante.
+que aquele dado específico é importante
+
+e que ele quer mais informações.
 
 --
 
