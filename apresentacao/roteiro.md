@@ -8,8 +8,6 @@ A nossa equipe se chama CHAMPS.
 
 Nós somos todos alunos de Ciência da Computação na UFMG.
 
-Sendo 4 mestrandos e um aluno de gradução.
-
 ---
 
 ###Slide 2 - Dataminas: Proposta
@@ -20,29 +18,17 @@ a gente desenvolveu o dataminas,
 
 que é:
 
-um site que pode ser acessado de computador celular e tablets,
+um site que pode ser acessado de computador, celular e tablets,
 
-para:
+feito para:
 
 ajudar as pessoas a entender as contas do governo.
 
 ---
 
-Porque todo mundo critica o governo, 
+###Slide 3 - Dataminas: Beneficios
 
-mas ninguém percebe a dificuldade do governo em balancear 
-
-a arrecadação com as despesas e as dívidas.
-
----
-
-###Slide 5 - Dataminas: Beneficios
-
-Pensando na dificuldade que as pessoas tem em
-
-entender as contas e decisões do governo,
-
-a gente construiu o Dataminas 
+A gente construiu o Dataminas 
 
 com base em 3 benefícios
 
